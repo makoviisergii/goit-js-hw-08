@@ -8,8 +8,6 @@ import SimpleLightbox from 'simplelightbox';
 
 import 'simplelightbox/dist/simple-lightbox.min.css';
 
-// import SimpleLightbox from '//node_modules/simplelightbox/dist/simple-lightbox.esm';
-
 const list = document.querySelector('ul.gallery');
 const galleryArr = galleryItems
   .map(
@@ -26,14 +24,14 @@ const galleryArr = galleryItems
 
 list.insertAdjacentHTML('beforeend', galleryArr);
 
-function openOrigImag(event) {
+function openOrigenalImg(event) {
   event.preventDefault();
   if (event.target.nodeName !== 'IMG') {
     return;
   }
 }
 
-let gallery = new SimpleLightbox('.gallery a', {
+new SimpleLightbox('.gallery a', {
   captionsData: 'alt',
   captionPosition: 'bottom',
   captionDelay: 250,
