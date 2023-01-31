@@ -1,1 +1,1 @@
-
+player.on('timeupdate');
