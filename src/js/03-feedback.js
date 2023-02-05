@@ -22,12 +22,11 @@ if (!localStorage.length) {
 
 form.addEventListener('input', throttle(getForminputData, 1000));
 form.addEventListener('submit', onFormSubmit);
-
+formObj = JSON.parse(localStorage.getItem(LOCALSTORAGE_KEY));
 updateFormData(saveMessage);
 
-formObj = saveMessage;
-
 function getForminputData(event) {
+  formObj = JSON.parse(localStorage.getItem(LOCALSTORAGE_KEY));
   formObj[event.target.name] = event.target.value;
   localStorage.setItem(LOCALSTORAGE_KEY, JSON.stringify(formObj));
   updateFormData();
@@ -35,16 +34,19 @@ function getForminputData(event) {
 
 function updateFormData(saveMessage) {
   saveMessage = JSON.parse(localStorage.getItem(LOCALSTORAGE_KEY));
-  console.log(saveMessage.message);
   if (saveMessage.message !== '') {
     textarea.value = saveMessage.message;
+    input.value = saveMessage.email;
   }
   if (saveMessage.email !== '') {
     input.value = saveMessage.email;
+    textarea.value = saveMessage.message;
   }
 }
+
 function onFormSubmit(event) {
   event.preventDefault();
+  saveMessage = JSON.parse(localStorage.getItem(LOCALSTORAGE_KEY));
   if (saveMessage.email && saveMessage.message !== '') {
     console.log(saveMessage);
     localStorage.removeItem(LOCALSTORAGE_KEY);
