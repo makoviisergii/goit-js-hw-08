@@ -59,6 +59,8 @@ function onFormSubmit(event) {
       message: '',
       email: '',
     };
+    localStorage.setItem(LOCALSTORAGE_KEY, JSON.stringify(formObj));
+    saveMessage = JSON.parse(localStorage.getItem(LOCALSTORAGE_KEY));
     return;
   }
   alert('Please fill in all the fields!');
