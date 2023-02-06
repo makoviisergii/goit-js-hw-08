@@ -19,17 +19,16 @@ if (!localStorage.length) {
   localStorage.setItem(LOCALSTORAGE_KEY, JSON.stringify(formObj));
   saveMessage = JSON.parse(localStorage.getItem(LOCALSTORAGE_KEY));
 }
+updateFormData(saveMessage);
 
 form.addEventListener('input', throttle(getForminputData, 1000));
 form.addEventListener('submit', onFormSubmit);
 formObj = JSON.parse(localStorage.getItem(LOCALSTORAGE_KEY));
-updateFormData(saveMessage);
 
 function getForminputData(event) {
   formObj = JSON.parse(localStorage.getItem(LOCALSTORAGE_KEY));
   formObj[event.target.name] = event.target.value;
   localStorage.setItem(LOCALSTORAGE_KEY, JSON.stringify(formObj));
-  updateFormData();
 }
 
 function updateFormData(saveMessage) {
